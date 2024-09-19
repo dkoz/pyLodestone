@@ -93,7 +93,8 @@ async def search_character_server(character_name: str, server_name: str, db: Ses
     else:
         raise HTTPException(status_code=404, detail="Character not found on specified server")
     
-@app.get("/items/{identifier}", dependencies=[Depends(verify_api_key)])
+# ffxivclock data pulled from their github
+@app.get("/items/resources/{identifier}", dependencies=[Depends(verify_api_key)])
 async def get_item(identifier: str):
     for item in items_data['items']:
         if item['id'] == identifier or item['name'].lower() == identifier.lower():
