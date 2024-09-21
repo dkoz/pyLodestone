@@ -1,15 +1,15 @@
 # pyLodestone Scraper
  Python scraper for the FFXIV Lodestone.
 
- > [!IMPORTANT]  
- > This is still in development and not ready for production use.
+ > [!WARNING]  
+ > This API is still in development and meant for personal projects.
 
 ## Features
  - Character ID Lookup
  - Freedom Company ID Lookup
  - Cluster ID Lookup
  - Character Name/Server Lookup
- - Item ID/Name Lookup
+ - Item Resource Name/ID Lookup
  - Data stored in local database
  - Built in documentation
  - API Key Authentication Method
@@ -22,7 +22,7 @@
  - `/freecompany/id/{id}`: Retrieves Free Company details by ID.
  - `/search/id/{character_name}`: Retrieves list of character IDs by name.
  - `/character/{character_name}/{server_name}`: Fetches character details by name and server.
- - `/items/{identifier}`: Search for an item by ID or name.
+ - `/items/resources/{identifier}`: Search for an item by ID or name.
 
 ## Docker Setup
  1. Create your `.env` and set an `API_KEY`.

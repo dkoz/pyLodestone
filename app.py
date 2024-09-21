@@ -12,12 +12,16 @@ import os
 import json
 from pathlib import Path
 
-app = FastAPI()
+app = FastAPI(
+    title="pyLodestone API",
+    description="An API for Final Fantasy XIV",
+    version="0.1.0"
+)
 
 # ITems API
 app.mount("/images", StaticFiles(directory="images"), name="images")
 
-items_file = Path(os.path.join('gamedata', 'items.json'))
+items_file = Path(os.path.join('gamedata', 'resources.json'))
 with items_file.open('r', encoding='utf-8') as f:
     items_data = json.load(f)
 
@@ -101,6 +105,11 @@ async def get_item(identifier: str):
             item['imageUrl'] = f"/images/ffxiv/{item['imageUrl']}"
             return item
     raise HTTPException(status_code=404, detail="Item not found")
+
+# Potential endpoint for market data
+@app.get("/market/{item_id}", dependencies=[Depends(verify_api_key)])
+async def get_market_data(item_id: int):
+    return {"status": "ok"}
 
 # cleans up the database cache
 threading.Thread(target=run_cleanup, daemon=True).start()
